@@ -7,9 +7,9 @@ Parse.Cloud.define('hello', function(req, res) {
 Parse.Cloud.define('updateUser', function(request, response){
   var phoneNumber = req.params.phoneNumber;
   var password = req.params.password;
-	phoneNumber = phoneNumber.replace(/\D/g, '');
-	
-	if (!phoneNumber || (phoneNumber.length != 10 && phoneNumber.length != 11)) return res.error('Invalid Parameters');
+  phoneNumber = phoneNumber.replace(/\D/g, '');
+  
+  if (!phoneNumber || (phoneNumber.length != 10 && phoneNumber.length != 11)) return res.error('Invalid Parameters');
 	
   Parse.Cloud.useMasterKey();
   var query = new Parse.Query(Parse.User);

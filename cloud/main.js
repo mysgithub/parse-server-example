@@ -8,6 +8,11 @@ Parse.Cloud.define('updateUserTest', function(req, res){
   var phoneNumber = req.params.phoneNumber;
   var password = req.params.password;
   phoneNumber = phoneNumber.replace(/\D/g, '');
+  
+  if(!phoneNumber || (phoneNumber.length != 10 && phoneNumber.length != 11)){
+    return res.error({'status': 'Invalid Parameters'});
+  }
+  
   res.success({"phoneNumber": phoneNumber});
 
 });

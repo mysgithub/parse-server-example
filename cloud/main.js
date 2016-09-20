@@ -12,6 +12,17 @@ Parse.Cloud.define('updateUserTest', function(req, res){
   if(!phoneNumber || (phoneNumber.length != 10 && phoneNumber.length != 11)){
     return res.error({'status': 'Invalid Parameters'});
   }
+  Parse.Cloud.useMasterKey();
+  var query = new Parse.Query(Parse.User);
+  query.equalTo('username', phoneNumber + "");
+  query.first().then(function(result) {
+    if (result) {
+      result.setPassword(password);
+      result.save().then(function(){
+        res.success({"status":"success"});
+      });
+    }
+  });
   
   res.success({"phoneNumber": phoneNumber});
 

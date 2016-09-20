@@ -4,32 +4,12 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 // Update User
-Parse.Cloud.define('updateUser', function(req, res){
+Parse.Cloud.define('updateUserTest', function(req, res){
   var phoneNumber = req.params.phoneNumber;
   var password = req.params.password;
   phoneNumber = phoneNumber.replace(/\D/g, '');
-  
-  if (!phoneNumber || (phoneNumber.length != 10 && phoneNumber.length != 11)) return res.error('Invalid Parameters');
-	
-  Parse.Cloud.useMasterKey();
-  var query = new Parse.Query(Parse.User);
-	query.equalTo('username', phoneNumber + "");
-	query.first().then(function(result) {
-	  if (result) {
-	    result.setPassword(password);
-	    result.save().then(function() {
-				res.success({"status":"success"});
-			}).then(function() {
-				res.success({});
-			}, function(err) {
-				res.error(err);
-			});
-	  }
-	}, function (err) {
-		res.error(err);
-	});
-	
-	
+  res.success({"status":"success"});
+
 });
 
 // Android push test

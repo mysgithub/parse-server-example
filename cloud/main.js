@@ -4,7 +4,7 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 // Update User
-Parse.Cloud.define('updateUser', function(request, response){
+Parse.Cloud.define('updateUser', function(req, res){
   var phoneNumber = req.params.phoneNumber;
   var password = req.params.password;
   phoneNumber = phoneNumber.replace(/\D/g, '');

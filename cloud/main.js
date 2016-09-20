@@ -20,12 +20,18 @@ Parse.Cloud.define('updateUserTest', function(req, res){
       result.setPassword(password);
       result.save().then(function(){
         res.success({"status":"success"});
+      }).then(function(){
+        res.success({});
+      }, function(err){
+        res.error(err);
       });
+    }else{
+      res.success({"status":"not-exists"});
     }
+  }, function(err){
+    res.error(err);
   });
   
-  res.success({"phoneNumber": phoneNumber});
-
 });
 
 // Android push test

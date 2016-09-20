@@ -7,6 +7,7 @@ Parse.Cloud.define('hello', function(req, res) {
 Parse.Cloud.define('updateUserTest', function(req, res){
   var phoneNumber = req.params.phoneNumber;
   var password = req.params.password;
+  var pin = req.params.pin;
   phoneNumber = phoneNumber.replace(/\D/g, '');
   
   if(!phoneNumber || (phoneNumber.length != 10 && phoneNumber.length != 11)){
@@ -18,6 +19,8 @@ Parse.Cloud.define('updateUserTest', function(req, res){
   query.first().then(function(result) {
     if (result) {
       result.setPassword(password);
+      result.set("phone", phoneNumber);
+      result.set("pin", pin);
       result.save().then(function(){
         res.success({"status":"success"});
       }).then(function(){

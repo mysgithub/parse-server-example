@@ -48,34 +48,34 @@ Parse.Cloud.define('pushChannelTest', function(request, response) {
   // To be used with:
   // https://github.com/codepath/ParsePushNotificationExample
   // See https://github.com/codepath/ParsePushNotificationExample/blob/master/app/src/main/java/com/test/MyCustomReceiver.java
-  //var customData = params.customData;
-  //var launch = params.launch;
-  //var broadcast = params.broadcast;
+  var customData = params.customData;
+  var launch = params.launch;
+  var broadcast = params.broadcast;
   // extract out the channel to send
   var action = params.action;
   var message = params.message;
-  var customData = params.customData;
+  //var customData = params.customData;
 
   // use to custom tweak whatever payload you wish to send
   var pushQuery = new Parse.Query(Parse.Installation);
   pushQuery.equalTo("deviceType", "android");
 
-  //var payload = {};
-  var payload = {"data": {
-      "alert": message,
-      "action": action,
-      "customdata": customData}
-                };
+  var payload = {};
+  //var payload = {"data": {
+  //    "alert": message,
+  //    "action": action,
+  //    "customdata": customData}
+  //              };
 
-  //if (customData) {
-  //    payload.customdata = customData;
-  //}
-  //else if (launch) {
-  //    payload.launch = launch;
- // }
-  //else if (broadcast) {
- //     payload.broadcast = broadcast;
- // }
+  if (customData) {
+      payload.customdata = customData;
+  }
+  else if (launch) {
+      payload.launch = launch;
+  }
+  else if (broadcast) {
+      payload.broadcast = broadcast;
+  }
 
   // Note that useMasterKey is necessary for Push notifications to succeed.
 
